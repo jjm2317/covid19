@@ -5,7 +5,7 @@ import Location from '../asset/location.png';
 const HeaderWrapper = styled.header`
   display: flex;
   flex-direction: column;
-  height: 40vh;
+  min-height: 350px;
 `;
 
 const Logo = styled.h1`
@@ -20,11 +20,11 @@ const LogoImg = styled.img`
 `;
 
 const SearchWrapper = styled.div`
-  height: 300px;
-  flex-basis: 150px;
+  /* height: 300px; */
+  /* flex-basis: 150px; */
   flex-shrink: 0;
   padding: 0 3%;
-
+  z-index: 99;
   & .wrapper {
     background-color: unset;
   }
@@ -61,7 +61,6 @@ const Header = ({ locations, setCountryCode }) => {
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
-    console.log(string, results);
   };
 
   const handleOnHover = (result) => {
@@ -71,6 +70,7 @@ const Header = ({ locations, setCountryCode }) => {
 
   const handleOnSelect = (item) => {
     // the item selected
+    console.log(item);
     setCountryCode(item.countryCode);
   };
 
@@ -79,7 +79,6 @@ const Header = ({ locations, setCountryCode }) => {
   };
 
   const formatResult = (item) => {
-    console.log(item, 'res');
     return (
       <div
         style={{
@@ -114,7 +113,7 @@ const Header = ({ locations, setCountryCode }) => {
             height: '60px',
             // border: '1px solid #dfe1e5',
             border: 'none',
-            borderRadius: '5px',
+            borderRadius: '10px',
             backgroundColor: 'white',
             // boxShadow: 'rgba(32, 33, 36, 0.28) 0px 1px 6px 0px',
             boxShadow: 'none',
