@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import Covid from '../asset/background/3670269.jpg';
 import Location from '../asset/location.png';
+import TooltipButton from '../asset/tooltipbutton.png';
+import { useState } from 'react';
 const HeaderWrapper = styled.header`
   display: flex;
   flex-direction: column;
@@ -20,6 +22,7 @@ const LogoImg = styled.img`
 `;
 
 const SearchWrapper = styled.div`
+  position: relative;
   /* height: 300px; */
   /* flex-basis: 150px; */
   flex-shrink: 0;
@@ -56,8 +59,42 @@ const SearchWrapper = styled.div`
     }
   }
 `;
+
+export const Tooltip = styled.div`
+  text-align: center;
+  position: absolute;
+  width: 95%;
+  height: 350px;
+  left: 2.5%;
+  top: 15px;
+  color: #fff;
+  padding: 30px 20px 0;
+  line-height: 1.1;
+  border-radius: 30px;
+  box-shadow: 0 0 10px #333;
+  background: #a6a6a6;
+  border-radius: 30px;
+  z-index: 10;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 70%;
+    width: 0;
+    height: 0;
+    border: 29px solid transparent;
+    border-bottom-color: #a6a6a6;
+    z-index: 9;
+    border-top: 0;
+    border-right: 0;
+    margin-left: 39.5px;
+    margin-top: -29px;
+  }
+`;
+
 const Header = ({ locations, setCountryCode }) => {
-  console.log(locations);
+  const [isTooltipShown, setIsTooltipShown] = useState(false);
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
@@ -101,6 +138,35 @@ const Header = ({ locations, setCountryCode }) => {
         <LogoImg src={Covid} />
       </Logo>
       <SearchWrapper>
+        <img
+          src={TooltipButton}
+          width={15}
+          height={15}
+          style={{ position: 'absolute', top: '-25px', right: '25px' }}
+          onClick={() => setIsTooltipShown((prev) => !prev)}
+        />
+        {isTooltipShown && (
+          <Tooltip>
+            The information on this website is compiled by a dedicated team of
+            researchers who liaise with immigration authorities, government
+            departments and health agencies worldwide in order to ensure the
+            information presented here is verified and correct at the time of
+            publication.* However, COVICO cannot guarantee this information is
+            accurate as the ongoing COVID-19 pandemic means that travel
+            regulations are subject to rapid change. By clicking on Start, you
+            agree to the Privacy Policy and Terms and Conditions. <br />
+            If you would like to know more about the terms and conditions,
+            should you email 1909355@buckingham.ac.uk
+            <br />
+            <br />{' '}
+            <span
+              style={{ fontWeight: 700 }}
+              onClick={() => setIsTooltipShown(false)}
+            >
+              Click to Close
+            </span>
+          </Tooltip>
+        )}
         <ReactSearchAutocomplete
           items={locations}
           onSearch={handleOnSearch}

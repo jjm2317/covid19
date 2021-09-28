@@ -127,8 +127,8 @@ const Board = ({ covidData, restriction }) => {
         type="text"
         description="Restrictions Details"
         restrictionStatus={
-          restriction[0].txt_origin_cn
-            ? resolveStatus(restriction[0].txt_origin_cn)
+          restriction[0]?.txt_origin_cn
+            ? resolveStatus(restriction[0]?.txt_origin_cn)
             : RestrictionStatus.LIMETED
         }
         restriction={restriction}
@@ -146,7 +146,7 @@ const FigureWrapper = styled.li`
 const Change = styled.span`
   display: block;
   ${headingStyle}
-  margin-top: 5px;
+  margin: 5px 0;
 `;
 
 const Description = styled.span`
@@ -156,11 +156,14 @@ const Description = styled.span`
   text-align: center;
 `;
 
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
 const DailyFigure = ({ type, imgSrc, perDay, description }) => {
   return (
     <FigureWrapper>
       <img src={imgSrc} width={40} height={40} alt={type} />
-      <Change>{perDay || '-'}</Change>
+      <Change>{perDay ? numberWithCommas(perDay) : '-'}</Change>
       <Description>{description}</Description>
     </FigureWrapper>
   );
@@ -324,7 +327,12 @@ const Limited = ({ restrictionStatus, restriction }) => {
       <LimitedHeading>{restrictionStatus}</LimitedHeading>
       <CheckText>Please check your details</CheckText>
       <p style={{ fontWeight: 600, textAlign: 'center', marginTop: '7px' }}>
-        {restriction[0]?.txt_origin_cn.split('*')[0]}
+        {
+          restriction[0]?.txt_origin_cn
+            .split('*')[0]
+            .split('-')[0]
+            .split('※')[0]
+        }
       </p>
     </LimitedWrapper>
   );

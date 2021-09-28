@@ -24,11 +24,35 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <title>React App</title>
   </head>
+  <style>
+     div.goog-te-gadget{
+       display: flex;
+       justify-content: flex-end;
+       font-size: 1px;
+      }
+      div.goog-te-gadget > div{
+        font-size: 18px;
+      }
+      div.goog-te-gadget > span{
+        display: none;
+      }
+     div.goog-te-gadget a.goog-te-menu-value span{color:yellow}
+     div.goog-te-gadget a.goog-te-menu-value span:hover{color:#fff}
+</style>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+  </style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="google_translate_element"></div>
     <div id="root"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -40,4 +64,19 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script type="text/javascript">
+    let obj;
+    function googleTranslateElementInit() {
+      obj = new google.translate.TranslateElement(
+        { pageLanguage: 'ko' },
+        'google_translate_element',
+      );
+    }
+    console.log(obj)
+  </script>
+
+  <script
+    type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ></script>
 </html>
