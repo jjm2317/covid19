@@ -19,6 +19,9 @@ ${reset};
 const Wrapper = styled.main`
   /* background-color: #f7f1e7; */
   min-height: 100vh;
+  max-width: 400px;
+  font-family: Ubuntu;
+  margin: 0 auto;
 `;
 
 const App = () => {

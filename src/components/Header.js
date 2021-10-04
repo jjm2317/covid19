@@ -14,6 +14,7 @@ const Logo = styled.h1`
   flex-basis: 50px;
   flex-shrink: 1;
   padding: 5%;
+  /* max-width: 400px; */
 `;
 
 const LogoImg = styled.img`

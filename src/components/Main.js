@@ -89,7 +89,7 @@ const MainTooltip = styled(Tooltip)`
     border-bottom-color: #a6a6a6;
     border-top: 0;
     border-right: 0;
-    margin-left: -109.5px;
+    margin-left: -89.5px;
     margin-top: -39px;
   }
 `;
@@ -122,7 +122,7 @@ const Main = ({ countryCode, setCountryCode }) => {
           src={TooltipButton}
           width={15}
           height={15}
-          style={{ position: 'absolute', top: '27px', left: '158px' }}
+          style={{ position: 'absolute', top: '27px', left: '60%' }}
           onClick={() => setIsTooltipShown((prev) => !prev)}
         />
         {isTooltipShown && (
